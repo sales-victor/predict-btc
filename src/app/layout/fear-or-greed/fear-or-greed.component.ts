@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import {
   ApexChart,
@@ -18,7 +18,6 @@ export type ChartOptions = {
   plotOptions: ApexPlotOptions;
   fill: ApexFill;
   stroke: ApexStroke;
-  colors: string[];
 };
 
 export interface ClassificationMetric {
@@ -46,10 +45,12 @@ interface LinhaTabela {
 
 export class FearOrGreedComponent implements OnInit {
 
+  @Input() dadosModelo: any;
+
   displayedColumns: string[] = ['class', 'precision', 'recall', 'f1Score', 'support'];
   currentValue = 61;
   dataSource = new MatTableDataSource<any>();
-  dadosModelo: any = {}
+  // dadosModelo: any = {}
   sugestao: string = '';
 
   chartOptions: ChartOptions = {
@@ -94,7 +95,6 @@ export class FearOrGreedComponent implements OnInit {
         opacityTo: 1
       }
     },
-    colors: [this.getColorByValue(this.currentValue)],
     stroke: {
       lineCap: 'round'
     },
@@ -132,12 +132,12 @@ export class FearOrGreedComponent implements OnInit {
   inicializaChart(dadosModelo: any) {
     this.dataSource.data = this.processarTabela()
 
-    let valueChart = (dadosModelo?.result_lstm?.pred_prob * 100)
+    let valueChart = (dadosModelo?.result_lstm?.pred_prob * 10000000).toFixed(2)
     console.log(valueChart)
 
 
     this.chartOptions = {
-      series: [valueChart], // ✅ Garantido que não é undefined
+      series: [Number(valueChart)], // ✅ Garantido que não é undefined
       chart: {
         height: 300,
         type: 'radialBar'
@@ -179,7 +179,6 @@ export class FearOrGreedComponent implements OnInit {
           opacityTo: 1
         }
       },
-      colors: [this.getColorByValue(valueChart)],
       stroke: {
         lineCap: 'round'
       },

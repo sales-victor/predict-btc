@@ -5,7 +5,7 @@
 }
 
 .subtitle {
-    font-size: 0.9rem;
+    // font-size: 0.9rem;
     color: gray;
 }
 
@@ -17,4 +17,113 @@
         font-size: 0.9rem;
         margin: 0.25rem 0;
     }
+}
+
+.bg-white {
+    border-radius: 10px;
+}
+
+.card-style {
+    background-color: rgba(0, 0, 0, 0.6); // translúcido
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 0 15px rgba(255, 140, 0, 0.4); // sombra laranja
+    color: white;
+    width: 100%;
+    max-width: 800px;
+}
+
+.subtitle {
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.table-wrapper {
+    width: 100%;
+    max-width: 800px;
+    overflow-x: auto;
+    margin: 0 auto;
+
+    table {
+        min-width: 600px; // valor necessário para manter legibilidade
+        color: white;
+    }
+
+    th,
+    td {
+        white-space: nowrap;
+        padding: 0.5rem;
+        text-align: center;
+    }
+
+    th {
+        background-color: rgba(255, 255, 255, 0.05);
+        font-weight: bold;
+    }
+}
+
+.div-pai {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    display: flex;
+    justify-content: space-around;
+    /* ou space-between */
+    flex-wrap: wrap;
+    /* se quiser que quebrem linha */
+    gap: 1rem;
+    padding: 1rem;
+    box-sizing: border-box;
+}
+
+.mat-table-container {
+    flex: 1 1 300px;
+    /* largura mínima ajustável */
+    max-width: 100%;
+    overflow-x: auto;
+}
+
+mat-table {
+    width: 100%;
+    min-width: 300px;
+    /* Define uma largura mínima */
+    border-collapse: collapse;
+}
+
+.small-table {
+    font-size: 7px !important;
+    /* ou 10px, conforme desejado */
+}
+
+.small-table .mat-header-cell,
+.small-table .mat-cell {
+    padding: 4px 8px;
+    /* Reduz o espaçamento interno */
+    font-size: 12px;
+}
+
+::ng-deep.mat-mdc-table {
+    background-color: transparent !important;
+}
+
+::ng-deep.mat-mdc-table tbody,
+.mat-mdc-table tfoot,
+.mat-mdc-table thead,
+.mat-mdc-cell,
+.mat-mdc-footer-cell,
+.mat-mdc-header-row,
+.mat-mdc-row,
+.mat-mdc-footer-row,
+.mat-mdc-table .mat-mdc-header-cell {
+    padding: 0;
+    height: 1px;
+    background-color: transparent !important;
+    // background-color: rgba(0, 0, 0, 0.0);
+    color: white;
+    /* Reduz o espaçamento interno */
+}
+
+.chart apx-chart {
+    height: 150px;
+    margin-top: -25px;
 }
