@@ -1,0 +1,12 @@
+<div class="spinner-container" *ngIf="loadingService.loading$ | async">
+    <mat-spinner></mat-spinner>
+
+    <p style="
+        font-size: 20px;
+        color: white;
+        font-family: Roboto, Arial, Tahoma, Sans-serif;
+      ">
+        Carregando...
+    </p>
+
+</div>

@@ -1,0 +1,53 @@
+<app-loading></app-loading>
+<div class="container">
+    <h2>LSTM MODEL</h2>
+    <h3>SUGESTÃO DO MODELO: {{this.sugestao}}</h3>
+
+    <p class="subtitle">Probabilidade de subir</p>
+
+
+    <apx-chart *ngIf="chartOptions" [series]="chartOptions.series" [chart]="chartOptions.chart"
+        [plotOptions]="chartOptions.plotOptions" [labels]="chartOptions.labels" [fill]="chartOptions.fill"
+        [colors]="chartOptions.colors" [stroke]="chartOptions.stroke">
+    </apx-chart>
+
+
+
+    <div class="summary">
+        <table mat-table [dataSource]="dataSource " class="mat-elevation-z8">
+
+            <ng-container matColumnDef="class">
+                <th mat-header-cell *matHeaderCellDef> </th>
+                <td mat-cell *matCellDef="let element"> {{ element.classe }} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="precision">
+                <th mat-header-cell *matHeaderCellDef> Precision </th>
+                <td mat-cell *matCellDef="let element"> {{ element.precision?.toFixed(2) ?? '-' }} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="recall">
+                <th mat-header-cell *matHeaderCellDef> Recall </th>
+                <td mat-cell *matCellDef="let element"> {{ element.recall?.toFixed(2) ?? '-' }} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="f1Score">
+                <th mat-header-cell *matHeaderCellDef> F1-Score </th>
+                <td mat-cell *matCellDef="let element"> {{ element.f1score?.toFixed(2) ?? '-' }} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="support">
+                <th mat-header-cell *matHeaderCellDef> Support </th>
+                <td mat-cell *matCellDef="let element"> {{ element.classe == 'accuracy' ? element.support.toFixed(3) :
+                    element.support ?? '-' }} </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+        </table>
+    </div>
+    <div>
+        <img [src]="getImageFromBase64(this.dadosModelo.result_lstm.confusion_matrix)" />
+    </div>
+</div>
