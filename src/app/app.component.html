@@ -1,5 +1,5 @@
 <!-- <app-fear-or-greed></app-fear-or-greed> -->
-
+<app-loading></app-loading>
 <div class="d-flex flex-row justify-content-around p-3" style="height: 148vh;">
     <mat-card class="example-card" appearance="outlined"
         style="background-color: black; background-color: rgba(122, 121, 121, 0.1);">
@@ -8,7 +8,7 @@
             <mat-card-title style="color: white">MODEL LSTM</mat-card-title>
         </mat-card-header>
         <mat-card-content>
-            <app-fear-or-greed [dadosModelo]="null"></app-fear-or-greed>
+            <app-fear-or-greed [dadosModelo]="dadosModelo.result_lstm"></app-fear-or-greed>
         </mat-card-content>
     </mat-card>
     <mat-card class="example-card" appearance="outlined"
@@ -17,7 +17,7 @@
             <mat-card-title style="color: white">MODEL XGBOST</mat-card-title>
         </mat-card-header>
         <mat-card-content>
-            <app-fear-or-greed [dadosModelo]="null"></app-fear-or-greed>
+            <app-fear-or-greed [dadosModelo]="dadosModelo.result_xgboost"></app-fear-or-greed>
         </mat-card-content>
     </mat-card>
     <mat-card class="example-card" appearance="outlined"
@@ -26,7 +26,7 @@
             <mat-card-title style="color: white">MODEL FORECAST</mat-card-title>
         </mat-card-header>
         <mat-card-content>
-            <app-fear-or-greed [dadosModelo]="null"></app-fear-or-greed>
+            <app-fear-or-greed [dadosModelo]="dadosModelo.result_forecast"></app-fear-or-greed>
         </mat-card-content>
     </mat-card>
 

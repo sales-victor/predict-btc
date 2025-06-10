@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import {
   ApexChart,
@@ -7,9 +7,6 @@ import {
   ApexPlotOptions,
   ApexStroke
 } from 'ng-apexcharts';
-import { TipoRequisicaoRestEnum } from '../../../enum/tipo-requisicao-enum';
-import { HttpRestService } from '../../service/http-rest.service';
-import { LoadingService } from '../loading/loading.service';
 
 export type ChartOptions = {
   series: ApexNonAxisChartSeries;
@@ -43,14 +40,14 @@ interface LinhaTabela {
   styleUrl: './fear-or-greed.component.scss'
 })
 
-export class FearOrGreedComponent implements OnInit {
+export class FearOrGreedComponent implements OnChanges {
+
 
   @Input() dadosModelo: any;
 
   displayedColumns: string[] = ['class', 'precision', 'recall', 'f1Score', 'support'];
   currentValue = 61;
   dataSource = new MatTableDataSource<any>();
-  // dadosModelo: any = {}
   sugestao: string = '';
 
   chartOptions: ChartOptions = {
@@ -102,37 +99,25 @@ export class FearOrGreedComponent implements OnInit {
   };
 
 
-  constructor(
-    private httpRestService: HttpRestService,
-    private loadingService: LoadingService,
-  ) {
-
-
-  }
-  ngOnInit(): void {
-    this.dataSource.data = [];
-    this.loadingService.show();
-    this.httpRestService.gerarSolicitacao(TipoRequisicaoRestEnum.GET,
-      `/predict`).subscribe(rs => {
-
-        this.loadingService.hide();
-        this.dadosModelo = rs
-
-        this.sugestao = this.dadosModelo.result_lstm.prediction == 0 ? 'VENDER' : 'COMPRAR'
-        this.dataSource.data = rs.result_lstm?.classification
-        this.inicializaChart(rs)
-      });
-  }
-
   getImageFromBase64(base64: string): string {
     return `data:image/png;base64,${base64}`;
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log(changes['dadosModelo'].currentValue)
+    this.dataSource.data = [];
+    if (!!changes['dadosModelo'].currentValue) {
+      this.inicializaChart(changes['dadosModelo'].currentValue)
+      this.sugestao = this.dadosModelo?.prediction == 0 ? 'VENDER' : 'COMPRAR'
+
+    }
   }
 
 
   inicializaChart(dadosModelo: any) {
     this.dataSource.data = this.processarTabela()
 
-    let valueChart = (dadosModelo?.result_lstm?.pred_prob * 10000000).toFixed(2)
+    let valueChart = (dadosModelo?.pred_prob * 100).toFixed(2)
     console.log(valueChart)
 
 
@@ -187,7 +172,7 @@ export class FearOrGreedComponent implements OnInit {
 
   }
   private processarTabela(): any[] {
-    return Object.entries(this.dadosModelo?.result_lstm?.classification).map(([key, value]: [string, any]) => {
+    return Object.entries(this.dadosModelo?.classification).map(([key, value]: [string, any]) => {
       return {
         classe: key,
         precision: value["precision"],
