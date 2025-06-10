@@ -104,7 +104,6 @@ export class FearOrGreedComponent implements OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log(changes['dadosModelo'].currentValue)
     this.dataSource.data = [];
     if (!!changes['dadosModelo'].currentValue) {
       this.inicializaChart(changes['dadosModelo'].currentValue)
@@ -118,8 +117,6 @@ export class FearOrGreedComponent implements OnChanges {
     this.dataSource.data = this.processarTabela()
 
     let valueChart = (dadosModelo?.pred_prob * 100).toFixed(2)
-    console.log(valueChart)
-
 
     this.chartOptions = {
       series: [Number(valueChart)], // ✅ Garantido que não é undefined
