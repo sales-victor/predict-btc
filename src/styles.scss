@@ -46,3 +46,123 @@ body {
     margin: 0;
     font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+
+::ng-deep .mat-slider-track-fill {
+    background-color: orange !important; // preenchimento do slider
+}
+
+::ng-deep .mat-slider-thumb {
+    background-color: white !important; // bolinha (thumb)
+    border: 2px solid orange; // opcional: borda visível
+}
+
+::ng-deep .mat-slider-track-background {
+    background-color: white !important; // trilha atrás da bolinha
+}
+
+
+
+// Customize the entire app. Change :root to your selector if you want to scope the styles.
+:root {
+    @include mat.slider-overrides((active-track-color: orange,
+            active-track-shape: red,
+            disabled-active-track-color: white,
+            disabled-handle-color: white,
+        ));
+}
+
+
+:root {
+    @include mat.slider-overrides((active-track-color : orange,
+            disabled-active-track-color : orange,
+            disabled-handle-color : orange,
+            disabled-inactive-track-color : orange,
+            focus-handle-color : orange,
+            focus-state-layer-color : rgba(219, 134, 6, 0.297),
+            handle-color : orange,
+            inactive-track-color : orange,
+            label-container-color : orange,
+            label-label-text-color : orange,
+            ripple-color : orange,
+            with-overlap-handle-outline-color : orange,
+            with-tick-marks-active-container-color : orange,
+            with-tick-marks-disabled-container-color : orange,
+            with-tick-marks-inactive-container-color : orange,
+        ));
+}
+
+:root {
+    @include mat.button-toggle-overrides((background-color : rgba(88, 59, 5, 0.466),
+            disabled-selected-state-background-color : orange,
+            disabled-selected-state-text-color : orange,
+            disabled-state-background-color : orange,
+            disabled-state-text-color : orange,
+            divider-color : orange,
+            selected-state-background-color : rgb(93, 60, 0),
+            selected-state-text-color : orange,
+            state-layer-color : orange,
+            text-color : orange,
+            legacy-disabled-selected-state-background-color : orange,
+            legacy-disabled-state-background-color : orange,
+            legacy-disabled-state-text-color : orange,
+            legacy-selected-state-background-color : orange,
+            legacy-selected-state-text-color : orange,
+            legacy-state-layer-color : orange,
+            legacy-text-color : orange,
+        ));
+}
+
+:root {
+    @include mat.button-overrides((filled-container-color: orange,
+            filled-disabled-container-color: orange,
+            filled-disabled-label-text-color: orange,
+            filled-disabled-state-layer-color: orange,
+            filled-label-text-color: orange,
+            filled-ripple-color: orange,
+            filled-state-layer-color: orange,
+            outlined-disabled-label-text-color: orange,
+            outlined-disabled-outline-color: orange,
+            outlined-disabled-state-layer-color: orange,
+            outlined-label-text-color: orange,
+            outlined-outline-color: orange,
+            outlined-ripple-color: orange,
+            outlined-state-layer-color: orange,
+            protected-container-color: orange,
+            protected-disabled-container-color: orange,
+            protected-disabled-label-text-color: orange,
+            protected-disabled-state-layer-color: orange,
+            protected-label-text-color: orange,
+            protected-ripple-color: orange,
+            protected-state-layer-color: orange,
+            text-disabled-label-text-color: orange,
+            text-disabled-state-layer-color: orange,
+            text-label-text-color: orange,
+            text-ripple-color: orange,
+            text-state-layer-color: orange,
+        ));
+}
+
+section {
+    display: flex;
+    align-items: center;
+}
+
+.example-label {
+    font-size: 14px;
+    margin: 0 16px 0 8px;
+    min-width: 120px;
+}
+
+.example-button-row {
+    max-width: 600px;
+}
+
+.example-button-row .mat-mdc-button-base {
+    margin: 8px 8px 8px 0;
+}
+
+.example-flex-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}

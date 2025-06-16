@@ -106,6 +106,10 @@ mat-table {
     background-color: transparent !important;
 }
 
+::ng-deep .apexcharts-datalabels-group text {
+    fill: white !important;
+}
+
 ::ng-deep.mat-mdc-table tbody,
 .mat-mdc-table tfoot,
 .mat-mdc-table thead,

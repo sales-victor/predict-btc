@@ -12,6 +12,7 @@ export type ChartOptions = {
   series: ApexNonAxisChartSeries;
   chart: ApexChart;
   labels: string[];
+  dataLabels: ApexDataLabels;
   plotOptions: ApexPlotOptions;
   fill: ApexFill;
   stroke: ApexStroke;
@@ -55,6 +56,12 @@ export class FearOrGreedComponent implements OnChanges {
     chart: {
       height: 300,
       type: 'radialBar'
+    },
+    dataLabels: {
+      enabled: true,
+      style: {
+        colors: ['#FFFFFF']  // define a cor branca para os data labels
+      }
     },
     plotOptions: {
       radialBar: {
@@ -123,6 +130,12 @@ export class FearOrGreedComponent implements OnChanges {
       chart: {
         height: 300,
         type: 'radialBar'
+      },
+      dataLabels: {
+        enabled: true,
+        style: {
+          colors: ['#FFFFFF']  // define a cor branca para os data labels
+        }
       },
       plotOptions: {
         radialBar: {

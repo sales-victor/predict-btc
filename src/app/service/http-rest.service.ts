@@ -34,20 +34,28 @@ export class HttpRestService {
   gerarSolicitacao(
     tipoRequisicao: TipoRequisicaoRestEnum,
     path: string,
-    params?: HttpParams | undefined,
-    body?: any | null,
-    url?: string
+    params?: HttpParams,
+    body?: any,
+    url?: string,
+    options?: any
   ) {
-    let headers: any;
-    this.API;
-    headers = this.geraHeader();
-    return this.montaRequest(tipoRequisicao, path, params, body, url, headers);
+    const headers = this.geraHeader();
+
+    return this.montaRequest(
+      tipoRequisicao,
+      path,
+      params,
+      body,
+      url,
+      headers,
+      options
+    );
   }
+
 
   private geraHeader() {
     const headers = {
       'Content-Type': 'application/json; charset-UTF-8',
-
     };
     return headers;
   }
@@ -55,15 +63,17 @@ export class HttpRestService {
   private montaRequest(
     tipoRequisicao: TipoRequisicaoRestEnum,
     path: string,
-    params?: HttpParams | undefined,
-    body?: any | null,
+    params?: HttpParams,
+    body?: any,
     url?: string,
-    headers?: object | null
+    headers?: any,
+    options?: any
   ) {
     let solicitacao$: Observable<any>;
+
     switch (tipoRequisicao) {
       case TipoRequisicaoRestEnum.GET: {
-        solicitacao$ = this.get(path, params, url, headers);
+        solicitacao$ = this.get(path, params, url, headers, options);
         break;
       }
       default: {
@@ -73,8 +83,10 @@ export class HttpRestService {
         break;
       }
     }
+
     return solicitacao$;
   }
+
 
   /**
  * Requisição GET.
@@ -83,14 +95,17 @@ export class HttpRestService {
  * @param params
  * @param url
  */
-  private get(path: string, params?: HttpParams, url?: string, headers?: any) {
-    return this.http
-      .get(url ? url : this.API + path, { headers })
-      .pipe(take(1));
-    /* return this.http.get(url ? url : API + path, {
-          headers: headers,
-          params: params,
-          reportProgress: true
-        }); */
+  private get(
+    path: string,
+    params?: HttpParams,
+    url?: string,
+    headers?: any,
+    options?: any
+  ) {
+    return this.http.get(url ? url : this.API + path, {
+      headers,
+      params,
+      ...options
+    }).pipe(take(1));
   }
 }
