@@ -3,7 +3,7 @@ const path = require('path');
 const app = express();
 
 // Atualize aqui com base no outputPath real
-const distPath = path.join(__dirname, 'dist/predict-btc');
+const distPath = path.join(__dirname, 'dist/predict-btc/browser');
 console.log("distPath",distPath)
 
 app.use(express.static(distPath));
