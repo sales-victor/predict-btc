@@ -52,6 +52,7 @@ export class AppComponent implements OnInit {
       { observe: 'response' }).subscribe({
         next: response => {
           // sucesso
+          this.loadingService.hide();
           if (response.status === 200) {
             this.dadosModelo = response.body
             this.showDashboard = true;
