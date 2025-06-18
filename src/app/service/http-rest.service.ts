@@ -16,7 +16,7 @@ const headers = new HttpHeaders()
 })
 export class HttpRestService {
 
-  private API = 'http://127.0.0.1:8000';
+  private API = 'https://ml-api-h4g3dydzgudsgaew.brazilsouth-01.azurewebsites.net';
 
   constructor(
     private http: HttpClient,
